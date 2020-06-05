@@ -6,7 +6,7 @@ var CLOUD_X = 100;
 var CLOUD_Y = 10;
 var GAP = 10;
 var FONT_GAP = 15;
-var TEXT_WIDTH = 40;
+var TEXT_WIDTH = 50;
 var BAR_HEIGHT = 150;
 var BARWIDTH = 40;
 
@@ -35,11 +35,11 @@ var getRandomColor = function () {
 window.renderStatistics = function (ctx, players, times) {
   var maxTime = getMaxElement(times);
 
-  var renderBar = function () {
+  var renderBar = function (colors) {
     ctx.fillStyle = '#000';
-    ctx.fillText(players[i], CLOUD_X + 2 * GAP + (2 * TEXT_WIDTH) * i, BAR_HEIGHT + (CLOUD_Y + 3 * GAP + FONT_GAP) + 4 * FONT_GAP);
-    ctx.fillStyle = getRandomColor();
-    ctx.fillRect(CLOUD_X + 2 * GAP + (2 * TEXT_WIDTH) * i, BAR_HEIGHT + (CLOUD_Y + 3 * GAP + FONT_GAP) + 3 * FONT_GAP, BARWIDTH, -Math.round((BAR_HEIGHT * times[i]) / maxTime)
+    ctx.fillText(players[i], CLOUD_X + 2 * GAP + (TEXT_WIDTH + BARWIDTH) * i, BAR_HEIGHT + (CLOUD_Y + 3 * GAP + FONT_GAP) + 4 * FONT_GAP);
+    ctx.fillStyle = colors;
+    ctx.fillRect(CLOUD_X + 2 * GAP + (TEXT_WIDTH + BARWIDTH) * i, BAR_HEIGHT + (CLOUD_Y + 3 * GAP + FONT_GAP) + 3 * FONT_GAP, BARWIDTH, -Math.round((BAR_HEIGHT * times[i]) / maxTime)
     );
   };
 
@@ -55,9 +55,9 @@ window.renderStatistics = function (ctx, players, times) {
     renderBar(players[i]);
 
     if (players[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-      ctx.fillRect(CLOUD_X + 2 * GAP + (2 * TEXT_WIDTH) * i, BAR_HEIGHT + (CLOUD_Y + 3 * GAP + FONT_GAP) + 3 * FONT_GAP, BARWIDTH, -Math.round((BAR_HEIGHT * times[i]) / maxTime)
-      );
+      renderBar('rgba(255, 0, 0, 1)');
+    } else {
+      renderBar(getRandomColor());
     }
   }
 };
