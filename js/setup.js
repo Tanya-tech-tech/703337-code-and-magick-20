@@ -14,23 +14,23 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .querySelector('.setup-similar-item');
 
 var getRandom = function (array) {
-  return array[Math.floor(Math.random() * array.length)]
+  return array[Math.floor(Math.random() * array.length)];
 };
 
 var getRandomName = function () {
-  return getRandom (WIZARD_NAMES);
+  return getRandom(WIZARD_NAMES);
 };
 
 var getRandomSurame = function () {
-  return getRandom (WIZARD_SURNAMES);
+  return getRandom(WIZARD_SURNAMES);
 };
 
 var getRandomColor = function () {
-  return getRandom (WIZARD_COAT);
+  return getRandom(WIZARD_COAT);
 };
 
 var getRandomEyes = function () {
-  return getRandom (WIZARD_EYES);
+  return getRandom(WIZARD_EYES);
 };
 
 var wizards = [
