@@ -35,9 +35,9 @@ var getRandomColor = function () {
 window.renderStatistics = function (ctx, players, times) {
   var maxTime = getMaxElement(times);
 
-  var renderBar = function (colors) {
+  var renderBar = function (colors, player) {
     ctx.fillStyle = '#000';
-    ctx.fillText(players[i], CLOUD_X + 2 * GAP + (TEXT_WIDTH + BARWIDTH) * i, BAR_HEIGHT + (CLOUD_Y + 3 * GAP + FONT_GAP) + 4 * FONT_GAP);
+    ctx.fillText(player, CLOUD_X + 2 * GAP + (TEXT_WIDTH + BARWIDTH) * i, BAR_HEIGHT + (CLOUD_Y + 3 * GAP + FONT_GAP) + 4 * FONT_GAP);
     ctx.fillStyle = colors;
     ctx.fillRect(CLOUD_X + 2 * GAP + (TEXT_WIDTH + BARWIDTH) * i, BAR_HEIGHT + (CLOUD_Y + 3 * GAP + FONT_GAP) + 3 * FONT_GAP, BARWIDTH, -Math.round((BAR_HEIGHT * times[i]) / maxTime)
     );
@@ -52,12 +52,10 @@ window.renderStatistics = function (ctx, players, times) {
   ctx.fillText('Список результатов:', CLOUD_X + 2 * GAP, CLOUD_Y + 3 * GAP + FONT_GAP);
 
   for (var i = 0; i < players.length; i++) {
-    renderBar(players[i]);
-
     if (players[i] === 'Вы') {
-      renderBar('rgba(255, 0, 0, 1)');
+      renderBar('rgba(255, 0, 0, 1)', players[i]);
     } else {
-      renderBar(getRandomColor());
+      renderBar(getRandomColor(), players[i]);
     }
   }
 };
