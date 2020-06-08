@@ -53,7 +53,7 @@ window.renderStatistics = function (ctx, players, times) {
 
   for (var i = 0; i < players.length; i++) {
     if (players[i] === 'Вы') {
-      renderBar('rgba(255, 0, 0, 1)');
+      renderBar('rgba(255, 0, 0, 1)', players[i]);
     } else {
       renderBar(getRandomColor(), players[i]);
     }
