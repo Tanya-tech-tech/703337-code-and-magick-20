@@ -13,36 +13,44 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
+var getRandom = function (array) {
+  return array[Math.floor(Math.random() * array.length)]
+};
+
 var getRandomName = function () {
-  return WIZARD_NAMES[Math.floor(Math.random() * WIZARD_NAMES.length)] + ' ' + WIZARD_SURNAMES [Math.floor(Math.random() * WIZARD_SURNAMES.length)];
+  return getRandom (WIZARD_NAMES);
+};
+
+var getRandomSurame = function () {
+  return getRandom (WIZARD_SURNAMES);
 };
 
 var getRandomColor = function () {
-  return WIZARD_COAT [Math.floor(Math.random() * WIZARD_COAT.length)];
+  return getRandom (WIZARD_COAT);
 };
 
 var getRandomEyes = function () {
-  return WIZARD_EYES [Math.floor(Math.random() * WIZARD_EYES.length)];
+  return getRandom (WIZARD_EYES);
 };
 
 var wizards = [
   {
-    name: getRandomName(),
+    name: getRandomName() + ' ' + getRandomSurame(),
     coatColor: getRandomColor(),
     eyesColor: getRandomEyes()
   },
   {
-    name: getRandomName(),
+    name: getRandomName() + ' ' + getRandomSurame(),
     coatColor: getRandomColor(),
     eyesColor: getRandomEyes()
   },
   {
-    name: getRandomName(),
+    name: getRandomName() + ' ' + getRandomSurame(),
     coatColor: getRandomColor(),
     eyesColor: getRandomEyes()
   },
   {
-    name: getRandomName(),
+    name: getRandomName() + ' ' + getRandomSurame(),
     coatColor: getRandomColor(),
     eyesColor: getRandomEyes()
   }
