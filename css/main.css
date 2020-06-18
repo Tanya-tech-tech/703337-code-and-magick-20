@@ -774,6 +774,7 @@ input[type=radio]:checked + .review-mark-label
 
     flex-wrap: wrap;
     justify-content: flex-end;
+
 }
 
 .setup-player
@@ -783,6 +784,7 @@ input[type=radio]:checked + .review-mark-label
     height: 300px;
     min-height: 300px;
     padding-top: 20px;
+
 }
 
 .setup-wizard
@@ -793,7 +795,16 @@ input[type=radio]:checked + .review-mark-label
 
     width: 250px;
     height: 250px;
+
 }
+/*.setup-wizard-appearance input:nth-child(2) {
+background-color: red;
+}
+.setup-wizard-appearance input:nth-child(3) {
+background-color: pink;
+}*/
+.wizard-eyes {cursor: pointer;}
+.wizard-coat {cursor: pointer;}
 
 .setup-fireball-wrap
 {
@@ -805,6 +816,8 @@ input[type=radio]:checked + .review-mark-label
     height: 75px;
 
     background: #ee4830;
+    cursor: pointer;
+
 }
 
 .setup-fireball
@@ -898,6 +911,7 @@ input[type=radio]:checked + .review-mark-label
 
     background-color: #414342;
     box-shadow: 5px 5px 0 rgba(0, 0, 0, .25);
+    border: 5px solid red;
 }
 
 .setup-similar-wizard
@@ -1019,3 +1033,6 @@ input[type=radio]:checked + .review-mark-label
 
     opacity: 0;
 }
+.wizard {
+    border: 5px solid;
+};
