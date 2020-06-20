@@ -110,6 +110,12 @@ setupOpen.addEventListener('keydown', function (evt) {
   }
 });
 
+setupOpen.addEventListener('focus', function (evt) {
+  if (evt.key === 'Enter') {
+    openPopup();
+  }
+}, true);
+
 setupForm.addEventListener('keydown', function (evt) {
   evt.stopPropagation();
 });
@@ -138,7 +144,6 @@ wizEyes.addEventListener('click', function () {
 
 wizFireball.addEventListener('click', function () {
   wizFireball.style.backgroundColor = getRandom(WIZARD_FIREBALL);
-  var z = wizFireball.style.backgroundColor;
   var input = wizFireball.querySelector('input');
-  input.value = z;
+  input.value = wizFireball.style.backgroundColor;
 });
