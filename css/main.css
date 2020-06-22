@@ -795,6 +795,9 @@ input[type=radio]:checked + .review-mark-label
     height: 250px;
 }
 
+.wizard-eyes {cursor: pointer;}
+.wizard-coat {cursor: pointer;}
+
 .setup-fireball-wrap
 {
     position: absolute;
@@ -805,6 +808,7 @@ input[type=radio]:checked + .review-mark-label
     height: 75px;
 
     background: #ee4830;
+    cursor: pointer;
 }
 
 .setup-fireball
@@ -898,6 +902,7 @@ input[type=radio]:checked + .review-mark-label
 
     background-color: #414342;
     box-shadow: 5px 5px 0 rgba(0, 0, 0, .25);
+    border: 5px solid red;
 }
 
 .setup-similar-wizard
@@ -1019,3 +1024,6 @@ input[type=radio]:checked + .review-mark-label
 
     opacity: 0;
 }
+.wizard {
+    border: 5px solid;
+};
