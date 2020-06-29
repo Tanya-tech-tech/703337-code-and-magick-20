@@ -37,6 +37,6 @@
     wizFireball: wizFireball,
     similarListElement: similarListElement,
     similarWizardTemplate: similarWizardTemplate
-  }
-}) ();
+  };
+})();
 
