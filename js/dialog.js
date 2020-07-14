@@ -60,9 +60,10 @@
   });
 
   window.util.wizFireball.addEventListener('click', function () {
-    window.util.wizFireball.style.backgroundColor = window.getRandom(window.util.WIZARD_FIREBALL);
-    var input = window.util.wizFireball.querySelector('input');
-    input.value = window.util.wizFireball.style.backgroundColor;
+    var wizardFireball = window.util.wizFireball;
+    wizardFireball.style.backgroundColor = window.getRandom(window.util.WIZARD_FIREBALL);
+    var input = wizardFireball.querySelector('input');
+    input.value = wizardFireball.style.backgroundColor;
   });
 
 })();

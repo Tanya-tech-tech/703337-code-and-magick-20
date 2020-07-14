@@ -40,7 +40,7 @@
     node.style.left = 0;
     node.style.right = 0;
     node.style.fontSize = '30px';
-    node.style.height = '150px';
+    node.style.height = '250px';
 
     node.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', node);
@@ -60,5 +60,16 @@
 
   window.util.setupForm.addEventListener('submit', submitHandler);
 
+
+var xhr = new XMLHttpRequest();
+
+xhr.responseType = 'json';
+
+xhr.addEventListener('load', function () {
+  console.log(xhr.response);
+});
+
+xhr.open('GET', 'https://javascript.pages.academy/code-and-magick/data');
+xhr.send();
 })();
 
