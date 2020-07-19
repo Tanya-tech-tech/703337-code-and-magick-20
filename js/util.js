@@ -16,10 +16,15 @@
   var wizEyes = setupWizardWrap.querySelector('.wizard-eyes');
   var wizFireball = document.querySelector('.setup-fireball-wrap');
 
+  var coatColor = 'rgb(101, 137, 164)';
+  var eyesColor = 'black';
+
   var similarListElement = document.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
+
+
 
   window.util = {
     WIZARD_NAMES: WIZARD_NAMES,
@@ -36,7 +41,19 @@
     wizEyes: wizEyes,
     wizFireball: wizFireball,
     similarListElement: similarListElement,
-    similarWizardTemplate: similarWizardTemplate
+    similarWizardTemplate: similarWizardTemplate,
+    coatColor: coatColor,
+    eyesColor: eyesColor,
+
+    updateWizards: function () {
+      window.render.renderWizards(wizards.sort(function (left, right) {
+        var rankDiff = getRank(right) - getRank(left);
+        if (rankDiff === 0) {
+          rankDiff = namesComparator(left.name, right.name);
+        }
+        return rankDiff;
+      }));
+    }
   };
 })();
 

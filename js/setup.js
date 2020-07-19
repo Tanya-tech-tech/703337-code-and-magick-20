@@ -8,29 +8,61 @@
 
   window.util.userDialog.classList.remove('hidden');
 
-  var renderWizard = function (wizard) {
-    var wizardElement = window.util.similarWizardTemplate.cloneNode(true);
-
-    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-
-    return wizardElement;
+  var getRandomFullName = function () {
+    return getRandom(window.util.WIZARD_NAMES) + ' ' + getRandom(window.util.WIZARD_SURNAMES);
   };
 
-  window.colorize(wizCoat, window.util.WIZARD_COAT);
-  window.colorize(wizFireball, window.util.WIZARD_FIREBALL);
-  window.colorize(wizEyes, window.util.WIZARD_EYES);
+  var wizards = [];
 
-  var MAX_SIMILAR_WIZARD_COUNT = 4;
-
-  var successHandler = function (wizards) {
-    var fragment = document.createDocumentFragment();
-    for (var i = 0; i < MAX_SIMILAR_WIZARD_COUNT; i++) {
-      fragment.appendChild(renderWizard(wizards[i]));
+  var getRank = function (wizard) {
+    var rank = 0;
+    if (wizard.colorCoat ===window.util.coatColor) {
+      rank +=2;
     }
-    window.util.similarListElement.appendChild(fragment);
-    window.util.userDialog.querySelector('.setup-similar').classList.remove('hidden');
+    if (wizard.colorEyes ===window.util.eyesColor) {
+      rank +=1;
+    }
+    return rank;
+  };
+
+  var namesComparator = function (left, right) {
+    if (left > right) {
+      return 1;
+    } else if (left < right) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+
+  window.updateWizards = function () {
+    window.render.renderWizards(wizards.sort(function (left, right) {
+      var rankDiff = getRank(right) - getRank(left);
+      if (rankDiff === 0) {
+        rankDiff = namesComparator(left.name, right.name);
+      }
+      return rankDiff;
+    }));
+  }
+
+  var lastTimeout;
+
+  window.wizard.onEyesChange = window.debounce(function (color) {
+    window.util.eyesColor = color;
+    window.updateWizards();
+  });
+
+  window.wizard.onCoatChange = window.debounce(function (color) {
+    window.util.coatColor = color;
+    window.updateWizards();
+  });
+
+  window.colorize(wizFireball, window.util.WIZARD_FIREBALL);
+
+  var successHandler = function (data) {
+    wizards = data;
+
+    window.updateWizards();
   };
 
   var errorHandler = function (errorMessage) {
@@ -40,36 +72,24 @@
     node.style.left = 0;
     node.style.right = 0;
     node.style.fontSize = '30px';
-    node.style.height = '250px';
+    node.style.height = '150px';
 
     node.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', node);
-  };
+  }
 
   window.backend.load(successHandler, errorHandler);
 
   var submitHandler = function (evt) {
     evt.preventDefault();
     window.backend.save(new FormData(window.util.setupForm),
-        function () {
-          window.util.userDialog.classList.add('hidden');
-        },
-        errorHandler);
+    function () {
+      window.util.userDialog.classList.add('hidden');
+    },
+    window.render.errorHandler);
 
   };
 
   window.util.setupForm.addEventListener('submit', submitHandler);
-
-
-var xhr = new XMLHttpRequest();
-
-xhr.responseType = 'json';
-
-xhr.addEventListener('load', function () {
-  console.log(xhr.response);
-});
-
-xhr.open('GET', 'https://javascript.pages.academy/code-and-magick/data');
-xhr.send();
 })();
 
