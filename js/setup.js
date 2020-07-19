@@ -1,26 +1,17 @@
 'use strict';
 (function () {
 
-  var setupWizardWrap = document.querySelector('.setup-wizard-wrap');
-  var wizCoat = setupWizardWrap.querySelector('.wizard-coat');
-  var wizEyes = setupWizardWrap.querySelector('.wizard-eyes');
-  var wizFireball = document.querySelector('.setup-fireball-wrap');
-
   window.util.userDialog.classList.remove('hidden');
-
-  var getRandomFullName = function () {
-    return getRandom(window.util.WIZARD_NAMES) + ' ' + getRandom(window.util.WIZARD_SURNAMES);
-  };
 
   var wizards = [];
 
   var getRank = function (wizard) {
     var rank = 0;
-    if (wizard.colorCoat ===window.util.coatColor) {
-      rank +=2;
+    if (wizard.colorCoat === window.util.coatColor) {
+      rank += 2;
     }
-    if (wizard.colorEyes ===window.util.eyesColor) {
-      rank +=1;
+    if (wizard.colorEyes === window.util.eyesColor) {
+      rank += 1;
     }
     return rank;
   };
@@ -33,7 +24,7 @@
     } else {
       return 0;
     }
-  }
+  };
 
   window.updateWizards = function () {
     window.render.renderWizards(wizards.sort(function (left, right) {
@@ -43,9 +34,7 @@
       }
       return rankDiff;
     }));
-  }
-
-  var lastTimeout;
+  };
 
   window.wizard.onEyesChange = window.debounce(function (color) {
     window.util.eyesColor = color;
@@ -57,7 +46,7 @@
     window.updateWizards();
   });
 
-  window.colorize(wizFireball, window.util.WIZARD_FIREBALL);
+  window.colorize(window.util.wizFireball, window.util.WIZARD_FIREBALL);
 
   var successHandler = function (data) {
     wizards = data;
@@ -76,18 +65,17 @@
 
     node.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', node);
-  }
+  };
 
   window.backend.load(successHandler, errorHandler);
 
   var submitHandler = function (evt) {
     evt.preventDefault();
     window.backend.save(new FormData(window.util.setupForm),
-    function () {
-      window.util.userDialog.classList.add('hidden');
-    },
-    window.render.errorHandler);
-
+        function () {
+          window.util.userDialog.classList.add('hidden');
+        },
+        window.render.errorHandler);
   };
 
   window.util.setupForm.addEventListener('submit', submitHandler);

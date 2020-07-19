@@ -6,7 +6,6 @@
     OK: 200
   };
   var TIMEOUT_IN_MS = 10000;
-  var xhr = new XMLHttpRequest();
 
   var makeRequest = function (url, method, onLoad, onError, data) {
     var xhr = new XMLHttpRequest();
@@ -28,15 +27,15 @@
     xhr.timeout = TIMEOUT_IN_MS;
     xhr.open(method, url);
     xhr.send(data);
-  }
+  };
 
   window.backend = {
-    load:function (onLoad, onError) {
-    makeRequest(URLGET,'GET', onLoad, onError);
-     },
+    load: function (onLoad, onError) {
+      makeRequest(URLGET, 'GET', onLoad, onError);
+    },
 
     save: function (data, onLoad, onError) {
-      makeRequest(URLPOST,'POST', onLoad, onError, data);
+      makeRequest(URLPOST, 'POST', onLoad, onError, data);
     }
   };
 

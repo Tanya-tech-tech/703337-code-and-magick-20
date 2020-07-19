@@ -24,8 +24,6 @@
     .content
     .querySelector('.setup-similar-item');
 
-
-
   window.util = {
     WIZARD_NAMES: WIZARD_NAMES,
     WIZARD_SURNAMES: WIZARD_SURNAMES,
@@ -44,16 +42,7 @@
     similarWizardTemplate: similarWizardTemplate,
     coatColor: coatColor,
     eyesColor: eyesColor,
-
-    updateWizards: function () {
-      window.render.renderWizards(wizards.sort(function (left, right) {
-        var rankDiff = getRank(right) - getRank(left);
-        if (rankDiff === 0) {
-          rankDiff = namesComparator(left.name, right.name);
-        }
-        return rankDiff;
-      }));
-    }
   };
+
 })();
 
