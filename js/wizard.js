@@ -6,8 +6,12 @@
   var wizEyes = setupWizardWrap.querySelector('.wizard-eyes');
 
   var wizard = {
-    onEyesChange: function (color) {},
-    onCoatChange: function (color) {}
+    onEyesChange: function (color) {
+      window.util.eyesColor = color;
+    },
+    onCoatChange: function (color) {
+      window.util.coatColor = color;
+    }
   };
 
   var getRandomElement = function (array) {
@@ -27,7 +31,7 @@
     wizard.onEyesChange(newColor);
   });
 
-  return window.wizard = wizard;
+  window.wizard = wizard;
 
 })();
 
